@@ -1,2 +1,2 @@
-# csharpjects
+# csharprojects
 alguns projetinhos em csharp
