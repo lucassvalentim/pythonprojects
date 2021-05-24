@@ -1,2 +1,2 @@
-# pythonprojects
-alguns projetinhos em python
+# csharpjects
+alguns projetinhos em csharp
