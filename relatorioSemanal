@@ -1,0 +1,75 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+
+namespace DiaDaSemana
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+            string[] nomes = { "Pablo", "Palmerio", "Reginaldo" };
+
+            Console.Write("--- Semana do --- \n[0]Pablo\n[1]Palmerio\n[2]Reginaldo.\nEscolha um numero: ");
+            int diaDaSemana = int.Parse(Console.ReadLine());
+
+            Document doc = new Document(PageSize.A4);
+            doc.SetMargins(40, 40, 80, 80);
+            string caminho = @"C:\pdf\" + "relatorio.pdf";
+
+            PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(caminho, FileMode.Create));
+
+            doc.Open();
+
+            Paragraph title = new Paragraph();
+            title.Font = new Font(Font.FontFamily.HELVETICA, 20);
+            title.Alignment = Element.ALIGN_CENTER;
+            title.Add("Trabalho da semana\n\n");
+            doc.Add(title);
+
+            if (diaDaSemana == 2)
+            {
+                Paragraph paragrafo = new Paragraph("", new Font(Font.NORMAL, 14));
+                string conteudo = ("-- Segunda --\n7:00 ás 12:00 -> " + nomes[2] + "\n13:00 ás 18:00 -> " + nomes[0] + "\n") +
+                ("\n-- Terça --\n7:00 ás 12:00 -> " + nomes[1] + "\n13:00 ás 18:00 -> " + nomes[2] + "\n") +
+                ("\n-- Quarta --\n7:00 ás 12:00 -> " + nomes[2] + "\n13:00 ás 18:00 -> " + nomes[0] + "\n") +
+                ("\n-- Quinta --\n7:00 ás 12:00 -> " + nomes[1] + "\n13:00 ás 18:00 -> " + nomes[2] + "\n") +
+                ("\n-- Sexta --\n7:00 ás 12:00 -> " + nomes[0] + "\n13:00 ás 18:00 -> " + nomes[1] + "\n");
+                paragrafo.Add(conteudo);
+                doc.Add(paragrafo);
+            }
+
+            if (diaDaSemana == 0)
+            {
+                Paragraph paragrafo = new Paragraph("", new Font(Font.NORMAL, 12));
+                string conteudo = ("-- Segunda --\n7:00 ás 12:00 -> " + nomes[0] + "\n13:00 ás 18:00 -> " + nomes[1] + "\n") +
+                ("\n-- Terça --\n7:00 ás 12:00 -> " + nomes[2] + "\n13:00 ás 18:00 -> " + nomes[0] + "\n") +
+                ("\n-- Quarta --\n7:00 ás 12:00 -> " + nomes[0] + "\n13:00 ás 18:00 -> " + nomes[1] + "\n") +
+                ("\n-- Quinta --\n7:00 ás 12:00 -> " + nomes[2] + "\n13:00 ás 18:00 -> " + nomes[0] + "\n") +
+                ("\n-- Sexta --\n7:00 ás 12:00 -> " + nomes[1] + "\n13:00 ás 18:00 -> " + nomes[2] + "\n");
+                paragrafo.Add(conteudo);
+                doc.Add(paragrafo);
+            }
+
+            if (diaDaSemana == 1)
+            {
+                Paragraph paragrafo = new Paragraph("", new Font(Font.NORMAL, 12));
+                string conteudo = ("-- Segunda --\n7:00 ás 12:00 -> " + nomes[1] + "\n13:00 ás 18:00 -> " + nomes[2] + "\n") +
+                ("\n-- Terça --\n7:00 ás 12:00 -> " + nomes[0] + "\n13:00 ás 18:00 -> " + nomes[1] + "\n") +
+                ("\n-- Quarta --\n7:00 ás 12:00 -> " + nomes[1] + "\n13:00 ás 18:00 -> " + nomes[2] + "\n") +
+                ("\n-- Quinta --\n7:00 ás 12:00 -> " + nomes[0] + "\n13:00 ás 18:00 -> " + nomes[1] + "\n") +
+                ("\n-- Sexta --\n7:00 ás 12:00 -> " + nomes[2] + "\n13:00 ás 18:00 -> " + nomes[0] + "\n");
+                paragrafo.Add(conteudo);
+                doc.Add(paragrafo); 
+            }
+            doc.Close();
+        }
+    }
+}
